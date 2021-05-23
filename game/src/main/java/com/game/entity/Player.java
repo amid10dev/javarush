@@ -39,7 +39,7 @@ public class Player {
     private Integer level;
 
     @Column(name = "untilNextLevel")
-    private Integer unitNextLevel;
+    private Integer untilNextLevel;
 
     public Player() {
 
@@ -118,11 +118,11 @@ public class Player {
     }
 
     public Integer getUnitNextLevel() {
-        return unitNextLevel;
+        return untilNextLevel;
     }
 
     public void setUnitNextLevel(Integer unitNextLevel) {
-        this.unitNextLevel = unitNextLevel;
+        this.untilNextLevel = unitNextLevel;
     }
 
 

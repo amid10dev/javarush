@@ -41,8 +41,8 @@ public class PlayerController {
         final List<Player> players = playerService.getPlayers(name,title,race,
                 profession,after,before,banned,minExperience,maxExperience,minLevel,maxLevel);
 
-        final List<Player> sortedPlayers = playerService.sortPlayer(players,order);
 
+        final List<Player> sortedPlayers = playerService.sortPlayer(players,order);
 
 
         return playerService.getPage(sortedPlayers,pageNumber,pageSize);
@@ -62,6 +62,7 @@ public class PlayerController {
             @RequestParam(value = "maxExperience", required = false) Integer maxExperience,
             @RequestParam(value = "minLevel", required = false) Integer minLevel,
             @RequestParam(value = "maxLevel", required = false) Integer maxLevel
+
 
     ){
         return playerService.getPlayers(name,title,race,

@@ -97,12 +97,14 @@ public class PlayerServiceImpl implements PlayerService {
             oldPlayer.setBanned(newPlayer.getBanned());
             shouldChangeRating = true;
         }
-        final int level = levelRating(oldPlayer.getExperience());
-        oldPlayer.setLevel(level);
 
 
-        final int nextLevel = experienceNextLevel(oldPlayer.getLevel(), oldPlayer.getExperience());
-        oldPlayer.setUnitNextLevel(nextLevel);
+      //  final int level = levelRating(oldPlayer.getExperience());
+        oldPlayer.setLevel(levelRating(oldPlayer.getExperience()));
+
+
+      //  final int nextLevel = experienceNextLevel(oldPlayer.getLevel(), oldPlayer.getExperience());
+        oldPlayer.setUnitNextLevel(experienceNextLevel(oldPlayer.getLevel(), oldPlayer.getExperience()));
 
 
         playerRepository.save(oldPlayer);
@@ -122,6 +124,8 @@ public class PlayerServiceImpl implements PlayerService {
                                    Integer maxExperience,
                                    Integer minLevel,
                                    Integer maxLevel
+                               //    Integer minUntilNextLevel,
+                                 //  Integer maxUntilNextLevel
     ) {
         final Date afterDate = after == null ? null : new Date(after);
         final Date beforeDate = before == null ? null : new Date(before);
@@ -135,9 +139,11 @@ public class PlayerServiceImpl implements PlayerService {
             if (before != null && player.getBirthday().after(beforeDate)) return;
             if (banned != null && player.getBanned().booleanValue() != banned.booleanValue()) return;
             if (minExperience != null && player.getExperience().compareTo(minExperience) < 0) return;
-            if (maxExperience != null && player.getExperience().compareTo(maxExperience) < 0) return;
+            if (maxExperience != null && player.getExperience().compareTo(maxExperience) > 0) return;
             if (minLevel != null && player.getLevel().compareTo(minLevel) < 0) return;
-            if (maxLevel != null && player.getLevel().compareTo(maxLevel) < 0) return;
+            if (maxLevel != null && player.getLevel().compareTo(maxLevel) > 0) return;
+        //    if (minUntilNextLevel != null && player.getUnitNextLevel().compareTo(minUntilNextLevel) < 0) return;
+        //    if (maxUntilNextLevel != null && player.getUnitNextLevel().compareTo(maxUntilNextLevel) > 0) return;
 
             list.add(player);
         });

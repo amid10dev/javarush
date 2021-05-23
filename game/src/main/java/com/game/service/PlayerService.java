@@ -26,6 +26,8 @@ public interface PlayerService {
             Integer maxExperience,
             Integer minLevel,
             Integer maxLevel
+           // Integer minUntilNextLevel,
+           // Integer maxUntilNextLevel
 
 
     );
